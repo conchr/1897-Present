@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Η Μάχη των Φαρσάλων (1897) - Εκπαιδευτική Παρουσίαση</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-color: #e45826;
+            --dark-bg: #162447;
+            --darker-bg: #1a1a2e;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+        }
+        
+        .card {
+            background: linear-gradient(to bottom right, var(--dark-bg), var(--darker-bg));
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            border-left: 6px solid var(--accent-color);
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 80vh;
+            max-height: 95vh;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-color), #f17345);
+        }
+        
+        .accent-text {
+            color: var(--accent-color);
+        }
+        
+        .accent-bg {
+            background-color: var(--accent-color);
+        }
+        
+        .main-button {
+            transition: all 0.3s;
+            background: linear-gradient(to right, var(--accent-color), #f17345);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+        
+        .main-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .main-button:active {
+            transform: translateY(0);
+        }
+        
+        .slide-content {
+            transition: opacity 0.5s ease-in-out;
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        
+        .page-indicator {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-color), #f17345);
+            transition: width 0.5s ease;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.25rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 2px solid var(--dark-bg);
+        }
+        
+        .highlight-box {
+            background: rgba(228, 88, 38, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+        
+        /* Thumbnail styles - 50% size */
+        .thumbnail-container {
+            width: 50%;
+            margin: 1.5rem auto;
+            background-color: #0d1321;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            text-align: center;
+            color: #aaa;
+            font-style: italic;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .thumbnail-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .thumbnail-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .thumbnail-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            color: white;
+        }
+        
+        /* Profile image thumbnails */
+        .profile-thumbnail {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            margin: 0 auto 0.5rem;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-thumbnail:hover {
+            transform: scale(1.1);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: clamp(0.75rem, 2vw, 1rem);
+        }
+        
+        .comparison-table th {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .key-fact {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        
+        .key-fact-icon {
+            background: var(--accent-color);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #d1d5db;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            background: #0d1321;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+        
+        .map-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            transform: translate(-50%, -50%);
+        }
+        
+        .map-point::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+        }
+        
+        .figure-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        /* Modal for full-size images */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .modal-image {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .modal-caption {
+            color: white;
+            margin-top: 1rem;
+            text-align: center;
+            max-width: 80%;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card {
+                min-height: 85vh;
+                max-height: 90vh;
+            }
+            
+            .card-header {
+                padding: 1rem;
+            }
+            
+            .slide-content {
+                padding: 0.5rem;
+            }
+            
+            .footer-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .footer-buttons > div {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .thumbnail-container {
+                width: 80%;
+            }
+            
+            .map-container {
+                height: 200px;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .card {
+                min-height: 82vh;
+                max-height: 88vh;
+            }
+        }
+        
+        @media (min-width: 1201px) {
+            .card {
+                min-height: 80vh;
+                max-height: 85vh;
+            }
+        }
+        
+        @media (orientation: portrait) and (max-height: 700px) {
+            .card {
+                min-height: 90vh;
+                max-height: 95vh;
+            }
+            
+            .card-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (orientation: landscape) and (max-height: 500px) {
+            .card {
+                min-height: 95vh;
+                max-height: 98vh;
+            }
+            
+            .card-header {
+                padding: 0.5rem 1rem;
+            }
+            
+            .slide-content {
+                padding: 0.5rem;
+            }
+            
+            .thumbnail-container {
+                width: 40%;
+            }
+        }
+        
+        /* 4K Screens */
+        @media (min-width: 2000px) {
+            .card {
+                max-width: 1800px;
+            }
+            
+            .card-header h1 {
+                font-size: 3rem;
+            }
+            
+            .slide-content {
+                font-size: 1.5rem;
+            }
+            
+            .main-button {
+                font-size: 1.25rem;
+                padding: 1rem 2rem;
+            }
+            
+            .thumbnail-container {
+                width: 40%;
+            }
+        }
+        
+        /* Smart TV optimizations */
+        @media (min-width: 1920px) and (min-height: 1080px) {
+            body {
+                padding: 2rem;
+            }
+            
+            .card {
+                border-radius: 24px;
+            }
+            
+            .card-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slide-content {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Modal for full-size images -->
+    <div id="image-modal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img id="modal-image" class="modal-image" src="" alt="">
+        <div id="modal-caption" class="modal-caption"></div>
+    </div>
+
+    <div id="presentation-card" class="card">
+        <header class="card-header mb-4 border-b pb-4 border-gray-700 px-6 pt-6">
+            <h1 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white" id="main-title">Η Μάχη των Φαρσάλων (1897)</h1>
+            <div class="flex justify-between items-center mt-4">
+                <div class="page-indicator" id="page-indicator">Σελίδα 1 / 11</div>
+                <div class="text-sm text-gray-400">Δήμος Φαρσάλων - Ιστορική Παρουσίαση</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 9%"></div>
+            </div>
+        </header>
+
+        <div id="slide-content" class="slide-content text-gray-200">
+            <!-- Content will be injected here by JavaScript -->
+        </div>
+
+        <footer class="mt-4 px-6 pb-6">
+            <div class="footer-buttons flex justify-between items-center mb-4">
+                <button id="prev-btn" class="main-button opacity-50 cursor-not-allowed" onclick="changePage(-1)" disabled>
+                    &larr; Προηγούμενη
+                </button>
+                <div class="page-indicator text-center" id="footer-page-indicator">Σελίδα 1 / 11</div>
+                <button id="next-btn" class="main-button" onclick="changePage(1)">
+                    Επόμενη &rarr;
+                </button>
+            </div>
+            <div class="flex justify-center">
+                <a href="https://conchr.github.io/Farsala-Center-Page/" class="main-button text-center">
+                    Κεντρική Σελίδα
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const slides = [
+            // Slide 1: Introduction
+            {
+                title: "Εισαγωγή: Η Μάχη των Φαρσάλων",
+                content: `
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-bold mb-4 accent-text">23 Απριλίου 1897</h2>
+                        <p class="mb-4 text-lg">Η Μάχη των Φαρσάλων ήταν μια αποφασιστική σύγκρουση του <span class="accent-text font-bold">Ελληνοτουρκικού Πολέμου του 1897</span>, γνωστού και ως «Μαύρο '97» ή «Ατυχής Πόλεμος».</p>
+                        <p class="mb-4">Ο πόλεμος ξεκίνησε λόγω του Κρητικού Ζητήματος, με την ελληνική πλειοψηφία στην Κρήτη να επιθυμεί την Ένωση με την Ελλάδα.</p>
+                        <div class="highlight-box">
+                            <p class="font-semibold">Παρά τη στρατιωτική ήττα, η μάχη αποτέλεσε σημαντικό μάθημα που οδήγησε σε μεταρρυθμίσεις και προετοίμασε την Ελλάδα για τους επιτυχημένους Βαλκανικούς Πολέμους.</p>
+                        </div>
+                    </div>
+                    <div class="thumbnail-container" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%9C%CE%AC%CF%87%CE%B7%20%CE%A6%CE%B1%CF%81%CF%83%CE%AC%CE%BB%CF%89%CE%BD%20%CE%93%CE%B5%CF%88%CF%81%CE%B3%CE%B9%CE%BF%20%CE%A1%CE%BF%CF%8A%CE%BB%CF%8C%CF%82.jpg?raw=true" data-caption="Η Μάχη των Φαρσάλων - Ιστορική Αναπαράσταση του Γεωργίου Ροϊλού">
+                        <img src="https://github.com/conchr/1897-Present/blob/main/%CE%9C%CE%AC%CF%87%CE%B7%20%CE%A6%CE%B1%CF%81%CF%83%CE%AC%CE%BB%CF%89%CE%BD%20%CE%93%CE%B5%CF%88%CF%81%CE%B3%CE%B9%CE%BF%20%CE%A1%CE%BF%CF%8A%CE%BB%CF%8C%CF%82.jpg?raw=true" alt="Η Μάχη των Φαρσάλων - Ιστορική Αναπαράσταση του Γεωργίου Ροϊλού">
+                        <div class="thumbnail-overlay">Κλικ για μεγέθυνση</div>
+                    </div>
+                `
+            },
+            // Slide 2: Historical Context
+            {
+                title: "Ιστορικό Πλαίσιο",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">Ο Ελληνοτουρκικός Πόλεμος του 1897</h2>
+                    <p class="mb-4 text-lg">Ο πόλεμος ξεκίνησε με ενθουσιασμό αλλά κατέληξε σε ταπεινωτική ήττα για την Ελλάδα, αποκαλύπτοντας τις τεράστιες στρατιωτικές και οργανωτικές αδυναμίες της χώρας.</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">Κρητικό Ζήτημα</h3>
+                            <p>Η ελληνική πλειοψηφία στην Κρήτη επιθυμούσε την Ένωση με την Ελλάδα, γεγονός που οδήγησε σε επαναστάσεις και διεθνείς εντάσεις.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">Έναρξη Πολέμου</h3>
+                            <p>Μετά από ανεπιτυχείς μάχες στα ελληνοτουρκικά σύνορα και άτακτη υποχώρηση από τη Λάρισα, ο ελληνικός στρατός ανασυντάχθηκε στα Φάρσαλα.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">Η Μάχη των Φαρσάλων</h3>
+                            <p>Στις 23 Απριλίου 1897, ο ελληνικός στρατός προσπάθησε να οργανώσει αμυντική γραμμή στα Φάρσαλα.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="thumbnail-container" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%A7%CE%AC%CF%81%CF%84%CE%B7%CF%82%201897.jpg?raw=true" data-caption="Χάρτης Ελλάδας και Κρήτης - 1897">
+                        <img src="https://github.com/conchr/1897-Present/blob/main/%CE%A7%CE%AC%CF%81%CF%84%CE%B7%CF%82%201897.jpg?raw=true" alt="Χάρτης Ελλάδας και Κρήτης - 1897">
+                        <div class="thumbnail-overlay">Κλικ για μεγέθυνση</div>
+                    </div>
+                `
+            },
+            // Slide 3: The Opposing Forces
+            {
+                title: "Οι Αντιμαχόμενες Δυνάμεις",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">Σύγκριση Δυνάμεων</h2>
+                    <div class="md:flex md:space-x-8">
+                        <div class="md:w-1/2">
+                            <div class="figure-card">
+                                <img src="https://github.com/conchr/1897-Present/blob/main/%CE%94%CE%B9%CE%AC%CE%B4%CE%BF%CF%87%CE%BF%CF%82%20%CE%9A%CF%89%CE%BD%CF%83%CF%84%CE%B1%CE%BD%CF%84%CE%AF%CE%BD%CE%BF%CF%82.jpg?raw=true" alt="Διάδοχος Κωνσταντίνος" class="profile-thumbnail" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%94%CE%B9%CE%AC%CE%B4%CE%BF%CF%87%CE%BF%CF%82%20%CE%9A%CF%89%CE%BD%CF%83%CF%84%CE%B1%CE%BD%CF%84%CE%AF%CE%BD%CE%BF%CF%82.jpg?raw=true" data-caption="Διάδοχος Κωνσταντίνος">
+                                <h3 class="accent-text text-xl font-semibold text-center">Ελληνικός Στρατός</h3>
+                                <div class="text-center mb-2">Αρχηγός: Διάδοχος Κωνσταντίνος</div>
+                                <ul class="list-disc list-inside ml-2 space-y-1">
+                                    <li>2 μεραρχίες Πεζικού</li>
+                                    <li>5 τάγματα Ευζώνων</li>
+                                    <li>2 πυροβολαρχίες</li>
+                                    <li>~22.000 στρατιώτες</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="figure-card">
+                                <img src="https://placehold.co/600x600/0d1321/aaaaaa?text=ΕΤΕΜ+ΠΑΣΑΣ" alt="Ετέμ Πασάς" class="profile-thumbnail" data-src="https://placehold.co/600x600/0d1321/aaaaaa?text=ΕΤΕΜ+ΠΑΣΑΣ" data-caption="Ετέμ Πασάς">
+                                <h3 class="accent-text text-xl font-semibold text-center">Οθωμανικός Στρατός</h3>
+                                <div class="text-center mb-2">Αρχηγός: Ετέμ Πασάς</div>
+                                <ul class="list-disc list-inside ml-2 space-y-1">
+                                    <li>6 μεραρχίες Πεζικού</li>
+                                    <li>1 έφιππη Ταξιαρχία</li>
+                                    <li>Ανώτερο πυροβολικό</li>
+                                    <li>~40.000 στρατιώτες</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <table class="comparison-table">
+                            <tr>
+                                <th></th>
+                                <th>Ελληνικός Στρατός</th>
+                                <th>Οθωμανικός Στρατός</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Αριθμός Στρατιωτών</strong></td>
+                                <td>~22.000</td>
+                                <td>~40.000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Πυροβολικό</strong></td>
+                                <td>48 πυροβόλα</td>
+                                <td>150+ πυροβόλα</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Εκπαίδευση</strong></td>
+                                <td>Περιορισμένη</td>
+                                <td>Καλύτερη</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="highlight-box mt-4">
+                        <p class="font-semibold">Ο οθωμανικός στρατός διέθετε σημαντική αριθμητική υπεροχή έναντι των ελληνικών δυνάμεων, τόσο σε στρατιώτες όσο και σε πυροβολικό.</p>
+                    </div>
+                `
+            },
+            // Slide 4: Preparations and Defense Plans
+            {
+                title: "Προετοιμασίες και Σχέδια Άμυνας",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">Η Οργάνωση της Άμυνας</h2>
+                    <p class="mb-4 text-lg">Ο ελληνικός στρατός έφτασε στα Φάρσαλα από τη Λάρισα στις 12 Απριλίου, μετά από άτακτη υποχώρηση από τα ελληνοτουρκικά σύνορα.</p>
+                    
+                    <div class="thumbnail-container" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%9C%CE%AC%CF%87%CE%B7%201897.jpg?raw=true" data-caption="Μάχη 1897">
+                        <img src="https://github.com/conchr/1897-Present/blob/main/%CE%9C%CE%AC%CF%87%CE%B7%201897.jpg?raw=true" alt="Μάχη 1897">
+                        <div class="thumbnail-overlay">Κλικ για μεγέθυνση</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <h3 class="font-semibold mb-2 accent-text">Σχέδια Άμυνας</h3>
+                            <ul class="list-disc list-inside ml-2 space-y-2">
+                                <li>Σχεδιάστηκε γραμμή άμυνας από τον ανθυπολοχαγό Παπαβασιλείου</li>
+                                <li>Επεξεργασία από τον ανθυπολοχαγό Ιωάννη Μεταξά</li>
+                                <li>Συγκρότηση σώματος από πέντε ευζωνικά τάγματα</li>
+                                <li>Προχωρημένη ζώνη ασφάλειας</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2 accent-text">Προβλήματα</h3>
+                            <ul class="list-disc list-inside ml-2 space-y-2">
+                                <li>Ατελής οχύρωση των θέσεων</li>
+                                <li>Παθητικότητα και καθυστερήσεις</li>
+                                <li>Έλλειψη συντονισμού</li>
+                                <li>Χαμηλό ηθικό λόγω προηγούμενων υποχωρήσεων</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box mt-4">
+                        <p class="font-semibold">Παρόλο που υπήρχε χρόνος για οχύρωση, παρατηρήθηκε αδράνεια και τα σχέδια δεν εφαρμόστηκαν αποτελεσματικά.</p>
+                    </div>
+                `
+            },
+            // Slide 5: The Battle Begins
+            {
+                title: "Η Έναρξη της Μάχης",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">23 Απριλίου 1897 - Η Μάχη Ξεκινά</h2>
+                    <p class="mb-4 text-lg">Στις 8:00 π.μ., τα προκεχωρημένα ελληνικά φυλάκια ανίχνευσαν τις τουρκικές δυνάμεις που κατευθύνονταν προς τα Φάρσαλα.</p>
+                    
+                    <div class="thumbnail-container" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%91%CF%80%CE%BF%CF%84%CF%85%CF%87%CE%AF%CE%B1.jpg?raw=true" data-caption="Αποτυχία">
+                        <img src="https://github.com/conchr/1897-Present/blob/main/%CE%91%CF%80%CE%BF%CF%84%CF%85%CF%87%CE%AF%CE%B1.jpg?raw=true" alt="Αποτυχία">
+                        <div class="thumbnail-overlay">Κλικ για μεγέθυνση</div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">08:00 π.μ.</h3>
+                            <p>Τα ελληνικά φυλάκια ανιχνεύουν την τουρκική προέλαση.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">09:00 π.μ.</h3>
+                            <p>Η τουρκική μεραρχία ιππικού πλησιάζει τις προφυλακές του 11ου ευζωνικού τάγματος στο Δρίσκιοϊ.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">Πρώιμο απόγευμα</h3>
+                            <p>Η τουρκική φάλαγγα αναπτύσσεται και το πυροβολικό ανοίγει πυρ κατά των ελληνικών θέσεων.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box mt-4">
+                        <p class="font-semibold">Ο ελληνικός στρατός απάντησε με το δικό του πυροβολικό, αλλά η διαφορά σε αριθμό και ποιότητα όπλων ήταν εμφανής.</p>
+                    </div>
+                `
+            },
+            // Slide 6: The Fight at Driskioi and Tatari
+            {
+                title: "Η Μάχη στο Δρίσκιοϊ και Τατάρι",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">Ηρώικη Αντίσταση</h2>
+                    <p class="mb-4 text-lg">Το 11ο ευζωνικό τάγμα αντιστάθηκε σθεναρά στο Δρίσκιοϊ, ενώ η «Λεγεώνα των Φιλελλήνων» κρατήθηκε ως εφεδρεία.</p>
+                    
+                    <div class="md:flex md:space-x-8">
+                        <div class="md:w-1/2">
+                            <div class="figure-card">
+                                <h3 class="accent-text text-xl font-semibold text-center mb-3">9ο Σύνταγμα Ευζώνων</h3>
+                                <p class="text-center">Το 9ο ευζωνικό τάγμα αγωνίστηκε συνεχώς για πολλές ώρες στην περιοχή του Τεκέ.</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="thumbnail-container" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%91%CF%81%CF%87%CE%B7%CE%B3%CF%8C%CF%82%20%CE%A6%CE%B9%CE%BB%CE%B5%CE%BB%20%CE%A0%CE%B5%CF%81%CE%B9%CE%BA%CE%BB%CE%AE%CF%82%20%CE%92%CE%B1%CF%81%CE%B1%CF%84%CE%AC%CF%83%CE%B7%CF%82.jpg?raw=true" data-caption="Αρχηγός Φιλελλήνων">
+                                <img src="https://github.com/conchr/1897-Present/blob/main/%CE%91%CF%81%CF%87%CE%B7%CE%B3%CF%8C%CF%82%20%CE%A6%CE%B9%CE%BB%CE%B5%CE%BB%20%CE%A0%CE%B5%CF%81%CE%B9%CE%BA%CE%BB%CE%AE%CF%82%20%CE%92%CE%B1%CF%81%CE%B1%CF%84%CE%AC%CF%83%CE%B7%CF%82.jpg?raw=true" alt="Αρχηγός Φιλελλήνων">
+                                <div class="thumbnail-overlay">Κλικ για μεγέθυνση</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <h3 class="font-semibold mb-2 accent-text">Ελληνικές Μονάδες</h3>
+                            <ul class="list-disc list-inside ml-2 space-y-1">
+                                <li>9ο Σύνταγμα Ευζώνων</li>
+                                <li>2ο Σύνταγμα Ευζώνων</li>
+                                <li>11ο Ευζωνικό Τάγμα</li>
+                                <li>Λεγεώνα των Φιλελλήνων</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2 accent-text">Τουρκικές Επιθέσεις</h3>
+                            <ul class="list-disc list-inside ml-2 space-y-1">
+                                <li>Τρεις τουρκικές μεραρχίες</li>
+                                <li>«Φάλαγγα των Αλβανών»</li>
+                                <li>Ισχυρό πυροβολικό</li>
+                                <li>Προσπάθειες πλευροκόπησης</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box mt-4">
+                        <p class="font-semibold">Οι ελληνικές μονάδες αντιστάθηκαν ηρωικά για πολλές ώρες, αλλά ο κακός συντονισμός και η ανωτερότητα του τουρκικού πυροβολικού ήταν καθοριστικά.</p>
+                    </div>
+                `
+            },
+            // Slide 7: The Battle Intensifies
+            {
+                title: "Ένταση της Μάχης και Υποχώρηση",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">Η Κρίση της Μάχης</h2>
+                    <p class="mb-4 text-lg">Γύρω στις 13:00, τρεις τουρκικές μεραρχίες και η «Φάλαγγα των Αλβανών» επιτέθηκαν στις ελληνικές θέσεις στον Τεκέ.</p>
+                    
+                    <div class="thumbnail-container" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%97%20%CE%95%CF%80%CE%AD%CE%BB%CE%B1%CF%83%CE%B7%20%CF%84%CF%89%CE%BD%20%CE%9F%CE%B8%CF%89%CE%BC%CE%B1%CE%BD%CF%89%CE%BD.jpg?raw=true" data-caption="Η Επέλαση των Οθωμανών">
+                        <img src="https://github.com/conchr/1897-Present/blob/main/%CE%97%20%CE%95%CF%80%CE%AD%CE%BB%CE%B1%CF%83%CE%B7%20%CF%84%CF%89%CE%BD%20%CE%9F%CE%B8%CF%89%CE%BC%CE%B1%CE%BD%CF%89%CE%BD.jpg?raw=true" alt="Η Επέλαση των Οθωμανών">
+                        <div class="thumbnail-overlay">Κλικ για μεγέθυνση</div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">13:00</h3>
+                            <p>Τρεις τουρκικές μεραρχίες επιτίθενται στον Τεκέ.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">14:00</h3>
+                            <p>Οι τουρκικές δυνάμεις καταλαμβάνουν τα υψώματα του Τεκέ.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="font-semibold">17:00</h3>
+                            <p>Οι Τούρκοι καταλαμβάνουν τις διαβάσεις του ποταμού Ενιπέα και το σιδηροδρομικό σταθμό.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box mt-4">
+                        <p class="font-semibold">Όταν οι Τούρκοι ακροβολιστές πλησίασαν σε απόσταση 400 μέτρων, τα ελληνικά τάγματα αναγκάστηκαν να υποχωρήσουν κλιμακωτά.</p>
+                    </div>
+                    
+                    <p class="mt-4">Σημαντικά τμήματα του ελληνικού στρατού υποχώρησαν πρόωρα, αφήνοντας ακάλυπτη την κεντρική γραμμή και αναγκάζοντας τους Ευζώνους να συμπτυχθούν στο ύψωμα Τατάρι.</p>
+                `
+            },
+            // Slide 8: Greek Retreat
+            {
+                title: "Υποχώρηση προς Δομοκό",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">Η Τελική Ήττα</h2>
+                    <p class="mb-4 text-lg">Μέχρι το τέλος της ημέρας, η ελληνική άμυνα στα Φάρσαλα κατέρρευσε ολοσχερώς. Ο ελληνικός στρατός αναγκάστηκε σε οργανωμένη υποχώρηση προς τον Δομοκό.</p>
+                    
+                    <div class="thumbnail-container" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%9F%CE%B8%CF%89%CE%BC%CE%B1%CE%BD%CE%BF%CE%AF%20%CE%A3%CF%84%CF%81%CE%B1%CF%84%CE%B9%CF%8E%CF%84%CE%B5%CF%82.jpg?raw=true" data-caption="Οθωμανοί Στρατιώτες">
+                        <img src="https://github.com/conchr/1897-Present/blob/main/%CE%9F%CE%B8%CF%89%CE%BC%CE%B1%CE%BD%CE%BF%CE%AF%20%CE%A3%CF%84%CF%81%CE%B1%CF%84%CE%B9%CF%8E%CF%84%CE%B5%CF%82.jpg?raw=true" alt="Οθωμανοί Στρατιώτες">
+                        <div class="thumbnail-overlay">Κλικ για μεγέθυνση</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <h3 class="font-semibold mb-2 accent-text">Πλοήγηση Υποχώρησης</h3>
+                            <ul class="list-disc list-inside ml-2 space-y-2">
+                                <li>Υποχώρηση με πλήρη τάξη</li>
+                                <li>Οι Εύζωνες σταματούν επανειλημμένα και πυροβολούν</li>
+                                <li>Στόχος: Δομοκός</li>
+                                <li>Τελική ανακωχή στον Δομοκό</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2 accent-text">Συνέπειες</h3>
+                            <ul class="list-disc list-inside ml-2 space-y-2">
+                                <li>Κατάρρευση ηθικού</li>
+                                <li>Απώλεια σημαντικών θέσεων</li>
+                                <li>Πολιτική κρίση</li>
+                                <li>Αναγκαστική ανακωχή</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box mt-4">
+                        <p class="font-semibold">Η ήττα στα Φάρσαλα, και η τελική ήττα στον Δομοκό λίγες μέρες αργότερα, οδήγησαν στην αναγκαστική ανακωχή και στην επιβολή διεθνούς οικονομικού ελέγχου στην Ελλάδα.</p>
+                    </div>
+                `
+            },
+            // Slide 9: Casualties and Aftermath
+            {
+                title: "Απώλειες και Συνέπειες",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">Το Τίμημα της Μάχης</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                        <div>
+                            <h3 class="accent-text text-xl font-semibold mb-3 text-center">Απώλειες</h3>
+                            <table class="comparison-table">
+                                <tr>
+                                    <th></th>
+                                    <th>Ελληνικός Στρατός</th>
+                                    <th>Οθωμανικός Στρατός</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Νεκροί/Τραυματίες</strong></td>
+                                    <td>120 άνδρες</td>
+                                    <td>180 άνδρες</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <h3 class="accent-text text-xl font-semibold mb-3 text-center">Διπλωματικές Συνέπειες</h3>
+                            <ul class="list-disc list-inside ml-2 space-y-2">
+                                <li>Παρέμβαση των Μεγάλες Δυνάμεις</li>
+                                <li>Αυτόνομο καθεστώς για την Κρήτη (Κρητική Πολιτεία 1898)</li>
+                                <li>Διεθνής οικονομικός έλεγχος στην Ελλάδα</li>
+                                <li>Εδαφικές ρυθμίσεις</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box mt-6">
+                        <p class="font-semibold">Παρά την ήττα, οι ελληνικές απώλειες ήταν μικρότερες από τις τουρκικές, γεγονός που μαρτυρά την ανδρεία και την πειθαρχία των Ευζώνων.</p>
+                    </div>
+                `
+            },
+            // Slide 10: Legacy and Significance
+            {
+                title: "Κληρονομιά και Σημασία",
+                content: `
+                    <h2 class="text-2xl font-bold mb-4 accent-text">Μαθήματα για το Μέλλον</h2>
+                    <p class="mb-4 text-lg">Η ήττα στα Φάρσαλα και ο Πόλεμος του '97 δεν ήταν απλώς στρατιωτικά γεγονότα. Ήταν η σπίθα για μεγάλες αλλαγές που διαμόρφωσαν τη σύγχρονη Ελλάδα.</p>
+                    
+                    <div class="thumbnail-container" data-src="https://github.com/conchr/1897-Present/blob/main/%CE%9C%CE%BD%CE%B7%CE%BC%CE%B5%CE%AF%CE%BF%201897%20%CE%91%CE%BB%CE%BA%CE%B1%CE%B6%CE%B1%CF%81.jpg?raw=true" data-caption="Μνημείο 1897 Αλκαζάρ">
+                        <img src="https://github.com/conchr/1897-Present/blob/main/%CE%9C%CE%BD%CE%B7%CE%BC%CE%B5%CE%AF%CE%BF%201897%20%CE%91%CE%BB%CE%BA%CE%B1%CE%B6%CE%B1%CF%81.jpg?raw=true" alt="Μνημείο 1897 Αλκαζάρ">
+                        <div class="thumbnail-overlay">Κλικ για μεγέθυνση</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <div>
+                            <h3 class="font-semibold mb-3 accent-text">Αποτελέσματα & Μεταρρυθμίσεις</h3>
+                            <div class="key-fact">
+                                <div class="key-fact-icon">Κ</div>
+                                <div><strong>Κίνημα του 1909:</strong> Η ντροπή του '97 οδήγησε στο Στρατιωτικό Κίνημα στο Γουδί, που έφερε τον Ελευθέριο Βενιζέλο.</div>
+                            </div>
+                            <div class="key-fact">
+                                <div class="key-fact-icon">Α</div>
+                                <div><strong>Αναδιοργάνωση στρατού:</strong> Ριζική αναμόρφωση που προετοίμασε την Ελλάδα για τους νικηφόρους Βαλκανικούς Πολέμους (1912-13).</div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-3 accent-text">Ιστορική Κληρονομιά</h3>
+                            <div class="key-fact">
+                                <div class="key-fact-icon">Μ</div>
+                                <div><strong>Ο Μεταξάς:</strong> Η εμπειρία της άτακτης υποχώρησης στα Φάρσαλα επηρέασε τη φιλοσοφία του για πειθαρχία και ισχυρή εξουσία.</div>
+                            </div>
+                            <div class="key-fact">
+                                <div class="key-fact-icon">Ε</div>
+                                <div><strong>Εθνική Συνείδηση:</strong> Διαμόρφωση κριτικής εθνικής συνείδησης που οδήγησε σε εκσυγχρονισμό.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote mt-6">
+                        "Η ιστορία δεν είναι μόνο αυτό που συνέβη, αλλά και το μάθημα που πρέπει να πάρουμε από αυτή"
+                    </div>
+                    
+                    <div class="highlight-box mt-6">
+                        <p class="font-semibold">Παρά την ήττα, η Μάχη των Φαρσάλων αποτέλεσε σημαντικό μάθημα για τον ελληνικό στρατό και την πολιτική ηγεσία, που βγήκε καρπός στις επιτυχίες των Βαλκανικών Πολέμων και στη δημιουργία μιας πιο σύγχρονης Ελλάδας.</p>
+                    </div>
+                `
+            },
+            // Slide 11: Thank You
+            {
+                title: "Τέλος Παρουσίασης",
+                content: `
+                    <div class="text-center py-12">
+                        <h2 class="text-3xl font-bold mb-6">Σε ευχαριστούμε που παρακολούθησες την παρουσίαση</h2>
+                        <p class="text-xl mb-10">Δήμος Φαρσάλων 2025 - Παρουσίαση για την Μάχη των Φαρσάλων (1897)</p>
+                        
+                        <div class="flex flex-col md:flex-row justify-center gap-6 mt-12">
+                            <button class="main-button text-lg py-3 px-6" onclick="alert('Το κουίζ θα προστεθεί σύντομα!')">
+                                Κάνε το κουίζ γνώσεων
+                            </button>
+                            <button class="main-button text-lg py-3 px-6" onclick="goToSlide(0)">
+                                Ξαναδές την Παρουσίαση
+                            </button>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        let currentPage = 0;
+
+        const mainTitle = document.getElementById('main-title');
+        const slideContent = document.getElementById('slide-content');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const pageIndicator = document.getElementById('page-indicator');
+        const footerPageIndicator = document.getElementById('footer-page-indicator');
+        const progressFill = document.getElementById('progress-fill');
+        const imageModal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalCaption = document.getElementById('modal-caption');
+        const closeModal = document.querySelector('.close-modal');
+        
+        /**
+         * Renders the content of the current slide.
+         */
+        function renderPage() {
+            // Apply fade-out effect for transition
+            slideContent.style.opacity = '0';
+
+            setTimeout(() => {
+                const slide = slides[currentPage];
+
+                // Update the main title to include the slide title for clarity
+                mainTitle.textContent = `Η Μάχη των Φαρσάλων (1897): ${slide.title}`;
+
+                // Update content and apply fade-in effect
+                slideContent.innerHTML = slide.content;
+                slideContent.style.opacity = '1';
+
+                // Update page indicators
+                pageIndicator.textContent = `Σελίδα ${currentPage + 1} / ${slides.length}`;
+                footerPageIndicator.textContent = `Σελίδα ${currentPage + 1} / ${slides.length}`;
+
+                // Update progress bar
+                const progressPercentage = ((currentPage + 1) / slides.length) * 100;
+                progressFill.style.width = `${progressPercentage}%`;
+
+                // Update button states
+                prevBtn.disabled = currentPage === 0;
+                prevBtn.classList.toggle('opacity-50', currentPage === 0);
+                prevBtn.classList.toggle('cursor-not-allowed', currentPage === 0);
+                
+                nextBtn.disabled = currentPage === slides.length - 1;
+                nextBtn.classList.toggle('opacity-50', currentPage === slides.length - 1);
+                nextBtn.classList.toggle('cursor-not-allowed', currentPage === slides.length - 1);
+                nextBtn.textContent = (currentPage === slides.length - 1) ? 'Τέλος' : 'Επόμενη →';
+
+                // Add click event listeners to all thumbnails
+                document.querySelectorAll('.thumbnail-container, .profile-thumbnail').forEach(thumbnail => {
+                    thumbnail.addEventListener('click', openImageModal);
+                });
+
+            }, 250); // Delay matches the CSS transition time
+        }
+
+        /**
+         * Changes the current page/slide.
+         * @param {number} direction - 1 for next, -1 for previous.
+         */
+        function changePage(direction) {
+            const newPage = currentPage + direction;
+            if (newPage >= 0 && newPage < slides.length) {
+                currentPage = newPage;
+                renderPage();
+            }
+        }
+
+        /**
+         * Goes to a specific slide.
+         * @param {number} slideIndex - The index of the slide to go to.
+         */
+        function goToSlide(slideIndex) {
+            if (slideIndex >= 0 && slideIndex < slides.length) {
+                currentPage = slideIndex;
+                renderPage();
+            }
+        }
+
+        /**
+         * Opens the image modal with the clicked image
+         * @param {Event} e - The click event
+         */
+        function openImageModal(e) {
+            const container = e.currentTarget;
+            const src = container.getAttribute('data-src');
+            const caption = container.getAttribute('data-caption');
+            
+            modalImage.src = src;
+            modalCaption.textContent = caption;
+            imageModal.classList.add('active');
+            
+            // Prevent scrolling of background content
+            document.body.style.overflow = 'hidden';
+        }
+
+        /**
+         * Closes the image modal
+         */
+        function closeImageModal() {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changePage(-1);
+            } else if (e.key === 'ArrowRight') {
+                changePage(1);
+            } else if (e.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+
+        // Close modal when clicking the X or outside the image
+        closeModal.addEventListener('click', closeImageModal);
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                closeImageModal();
+            }
+        });
+
+        // Initialize the presentation on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPage();
+        });
+    </script>
+
+</body>
+</html>
