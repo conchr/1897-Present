@@ -22,26 +22,21 @@
         html, body {
             height: 100%;
             width: 100%;
+            overflow-x: hidden;
         }
         
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
             color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
             padding: 1rem;
-            overflow-x: hidden;
+            overflow-y: auto;
         }
         
         .presentation-container {
             width: 100%;
             max-width: min(95vw, 1800px);
             height: auto;
-            min-height: min(95vh, 1000px);
             background: linear-gradient(to bottom right, var(--dark-bg), var(--darker-bg));
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             border-radius: clamp(12px, 2vw, 24px);
@@ -50,6 +45,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            margin: 0 auto;
         }
         
         .presentation-container::before {
@@ -100,7 +96,7 @@
         .slide-content {
             transition: opacity 0.5s ease-in-out;
             flex: 1;
-            overflow-y: auto;
+            overflow-y: visible;
             padding: clamp(1rem, 3vw, 2rem);
             display: flex;
             flex-direction: column;
@@ -404,8 +400,7 @@
             }
             
             .presentation-container {
-                min-height: 98vh;
-                max-height: 98vh;
+                min-height: auto;
             }
             
             .slide-content {
@@ -430,8 +425,7 @@
             }
             
             .presentation-container {
-                min-height: 98vh;
-                max-height: 98vh;
+                min-height: auto;
             }
             
             .presentation-header {
@@ -458,16 +452,14 @@
         /* Tablets */
         @media (min-width: 768px) and (max-width: 1024px) {
             .presentation-container {
-                min-height: 92vh;
-                max-height: 92vh;
+                min-height: auto;
             }
         }
         
         /* Laptops and Desktops */
         @media (min-width: 1025px) and (max-width: 1919px) {
             .presentation-container {
-                min-height: 88vh;
-                max-height: 88vh;
+                min-height: auto;
             }
         }
         
@@ -478,8 +470,7 @@
             }
             
             .presentation-container {
-                min-height: 85vh;
-                max-height: 85vh;
+                min-height: auto;
                 border-radius: 28px;
             }
             
@@ -902,7 +893,7 @@
                         <div>
                             <h3 class="accent-text font-semibold mb-3 text-center">Διπλωματικές Συνέπειες</h3>
                             <ul class="list-disc list-inside ml-2 space-y-2">
-                                <li>Παρέμβαση των Μεγάλες Δυνάμεις</li>
+                                <li>Παρέμβαση από τις Μεγάλες Δυνάμεις</li>
                                 <li>Αυτόνομο καθεστώς για την Κρήτη (Κρητική Πολιτεία 1898)</li>
                                 <li>Διεθνής οικονομικός έλεγχος στην Ελλάδα</li>
                                 <li>Εδαφικές ρυθμίσεις</li>
@@ -1035,6 +1026,17 @@
                 document.querySelectorAll('.image-container').forEach(thumbnail => {
                     thumbnail.addEventListener('click', openImageModal);
                 });
+
+                // Scroll to top of the page after content is rendered
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }, 50);
 
             }, 250); // Delay matches the CSS transition time
         }
